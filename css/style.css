@@ -1,0 +1,10 @@
+* {margin: 0; padding: 0;}
+body,html {background: #F5F5F5;}
+ul,ol {list-style: none;}
+section { width: 1096px; margin: 0 auto;position: relative;height: 406px; margin-top: 50px;}
+li img {position: absolute; right: 77px; top: 110px; width: 260px; z-index: 1;}
+/*li:nth-child(2) img{right: 642px; width: 450px; opacity: 0.8;  top: 50px;  z-index: 2;}
+li:nth-child(3) img{right: 763px;  width: 260px; top: 110px;  z-index: 1;}
+li:nth-child(4) img{ width: 450px; right: 0; opacity: 0.8;  top: 50px; z-index: 2; }*/
+.ativo { z-index: 4!important;}
+.opaco {opacity: 0.8; z-index: 2!important;}

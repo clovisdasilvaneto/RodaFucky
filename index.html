@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>.:: Exemplo de Carrosel ::. Clóvis Web Designer</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<section>
+		<ul>
+			<li><a href="#"><img src="img/slide1.png"></a></li>
+			<li><a href="#"><img src="img/slide2.png"></a></li>
+			<li><a href="#"><img src="img/slide3.png"></a></li>
+			<li><a href="#"><img src="img/slide4.png"></a></li>
+			<li><a href="#"><img src="img/slide5.png"></a></li>
+		</ul>
+	</section>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("section ul li:eq(0) img").addClass("ativo").animate({
+				"right": "300px",
+				 "width": "530px",
+				  "top": "22px"
+			},0).parent().parent().next().find("a").find("img").animate({
+				 "width": "450px",
+				 "right": "0",
+				  "top": "50px"
+			},0).addClass("opaco");
+
+			$("section ul li:last img").animate({
+				"right": "642px",
+				 "width": "450px",
+				  "top": "50px"
+			},0).addClass("opaco").parent().parent().prev().find("a").find("img").animate({
+				"right": "763px",
+				 "width": "260px",
+				 "top": "110px",
+			},0).addClass("ultimo");
+
+			setInterval(slide,3000);
+
+			function slide(){
+
+					//verifica o indice do ultimo carrosel e coloca para animar
+					if ($(".ultimo").parent().parent().next().size()) {
+						$(".ultimo").animate({
+							"right": "77px",
+							"top": "110px",
+							"width": "260px"
+						},2000).removeClass("ultimo").parent().parent().next().find("a").find("img").removeClass("opaco").addClass("ultimo").animate({
+							"right": "753px",
+							"width": "260px", 
+							"top": "110px",
+							"z-index": "1"
+						},2000);
+					}else{
+						$(".ultimo").animate({
+							"right": "77px",
+							"top": "110px",
+							"width": "260px"
+						},2000).removeClass("ultimo");
+
+						$("section li:eq(0) img").addClass("ultimo").animate({
+							"right": "753px",
+							"width": "260px", 
+							"top": "110px",
+							"z-index": "1"
+						},2000,function(){
+							$(this).removeClass("opaco");
+						});
+					}
+
+					//verifica se é a vez da primeira imagem aparecer ao lado das outras
+					if ($(".ultimo").parent().parent().prev().prev().index() == 0) {
+						$(".ultimo").parent().parent().prev().prev().find("a").find("img").addClass("opaco").animate({	
+							 "width": "450px",
+							 "right": "0",
+							  "top": "50px"
+						},2000);
+					};
+
+			if ($(".ativo").parent().parent().next().size()) {
+					//animção da imagem ativa
+					$(".ativo").animate({
+						"right": "642px",
+						"width": "450px",
+						"top": "50px"
+					},2000,function(){
+						$(this).removeClass("ativo");
+					}).addClass("opaco").parent().parent().next().find("a").find("img").removeClass("opaco").addClass("ativo").animate({
+						"right": "300px",
+						 "width": "530px",
+						 "top": "22px"
+					},2000).parent().parent().next().find("a").find("img").animate({
+						"right": "0",
+						 "width": "450px",
+						 "top": "50px",
+					},2000).addClass("opaco");
+				}else{
+					//faz a animação default
+					$(".ativo").animate({
+						"right": "642px",
+						"width": "450px",
+						"top": "50px"
+					},2000,function(){
+						$(this).removeClass("ativo");
+					}).addClass("opaco");
+
+					$("section ul li:eq(0) img").removeClass("opaco").addClass("ativo").animate({
+						"right": "300px",
+						 "width": "530px",
+						  "top": "22px"
+					},2000).parent().parent().next().find("a").find("img").animate({
+						 "width": "450px",
+						 "right": "0",
+						  "top": "50px"
+					},2000).addClass("opaco");
+				}
+			}
+		});
+	</script>
+</body>
+</html>
